@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 
-class Weather extends Component {
+class WeatherComponent extends Component {
     constructor(props){
         super(props);
+
         this.state = {
-            color: 'red'
+            color: "lightgrey",
+            width: "100px",
+            height: "100px",
+            padding: "20px",
+            margin: "20px"
         }
     }
+
     render(){
         return(
-            <div></div>
+            <div style={{backgroundColor: this.state.color, width: this.state.width, height: this.state.height, padding: this.state.padding, margin: this.state.margin}}>
+                <p>Current weather</p>
+            </div>
         )
-    }
-
+    }   
 }
 
-export deafault Weather;
+export default WeatherComponent;
