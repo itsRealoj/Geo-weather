@@ -5,12 +5,9 @@ const Weather = () => {
   const [hasError, setErrors] = useState(false);
   const [weather, setWeather] = useState({});
 
-  // get weather data as a string
-  // async function myData() {
-    const data =  JSON.stringify(weather);
-    console.log(data);
-  // }
-  
+  const weatherData = JSON.stringify(weather.daily);
+  console.log(weatherData);
+
 
   async function fetchData() {
     //   Preventing CORS errors
@@ -22,17 +19,7 @@ const Weather = () => {
 
     if(data){
       setWeather(data);
-      // console.log(data)
-      // const data = await JSON.stringify(weather);
-      return (
-        <div>
-          <CurrentWeather />
-          {console.log(data)}
-          <hr />
-          <span>Has error: {JSON.stringify(hasError)}</span>
-          
-        </div>
-      );
+      // return (data);
     }else{
       setErrors(console.log("Error! Can not fetch data")) 
     }
@@ -40,16 +27,16 @@ const Weather = () => {
 
   useEffect(() => {
     fetchData();
-    // myData();
   });
 
-  // return (
-  //   <div>
-  //     <CurrentWeather />
-  //     <div>{myData}</div>
-  //     <hr />
-  //     <span>Has error: {JSON.stringify(hasError)}</span>
-  //   </div>
-  // );
+  return (
+    <div>
+      <CurrentWeather />
+      {/* {summary} */}
+      {console.log(weather.daily)}
+      <hr />
+      <span>Has error: {JSON.stringify(hasError)}</span>
+    </div>
+  );
 };
 export default Weather;

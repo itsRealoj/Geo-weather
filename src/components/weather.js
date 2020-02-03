@@ -16,7 +16,7 @@ class WeatherComponent extends Component {
 
     render(){
         return(
-            <div className="row" style={{backgroundColor:"grey"}}>
+            <div className="row" style={{backgroundColor:this.state.color}}>
                 <div className="col" style={{backgroundColor: this.state.color, width: this.state.width, height: this.state.height, padding: this.state.padding, margin: this.state.margin}}>
                     <p>Current weather</p>
                     <Weather />
