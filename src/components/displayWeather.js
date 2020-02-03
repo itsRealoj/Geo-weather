@@ -1,30 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
+import CurrentWeather from "./currentPosition";
 
-class WeatherInfo extends Component {
-    constructor(props){
-        super(props);
+const Weather = () => {
+  const [hasError, setErrors] = useState(false);
+  const [weather, setWeather] = useState({});
 
-        this.state = {
-            hasErrors: false,
-            weatherData: {},
-            }
-        }
+//   Preventing CORS errors
+  const proxy = "https://cors-anywhere.herokuapp.com/";
+  const api = `${proxy}https://api.darksky.net/forecast/d6e15489ae7bca051e4013c6c707907a/42.3601,-7`;
 
-    componentDidMount() {
-        fetch("https://api.darksky.net/forecast/d6e15489ae7bca051e4013c6c707907a/42.3601,-7")
-        .then(res => res.json())
-        .then(res => this.setState({weatherData: res}))
-        .catch(() => this.setState({hasErrors: true}))
-    }
+  async function fetchData() {
+    const res = await fetch(api);
+    res
+      .json()
+      .then(res => setWeather(res))
+      .catch(err => setErrors(err));
+  }
 
-    render(){
-        return (
-         <div>
-            <p>Weather Data</p>
-            <div>{JSON.stringify(this.state.weatherData)}</div>
-         </div>
-        )
-    }
-}
+  useEffect(() => {
+    fetchData();
+  });
 
-export default WeatherInfo;
+  return (
+    <div>
+      <CurrentWeather />
+      <span>{JSON.stringify(weather)}</span>
+      <hr />
+      <span>Has error: {JSON.stringify(hasError)}</span>
+    </div>
+  );
+};
+export default Weather;
