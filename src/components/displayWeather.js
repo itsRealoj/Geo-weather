@@ -5,29 +5,51 @@ const Weather = () => {
   const [hasError, setErrors] = useState(false);
   const [weather, setWeather] = useState({});
 
-//   Preventing CORS errors
-  const proxy = "https://cors-anywhere.herokuapp.com/";
-  const api = `${proxy}https://api.darksky.net/forecast/d6e15489ae7bca051e4013c6c707907a/42.3601,-7`;
+  // get weather data as a string
+  // async function myData() {
+    const data =  JSON.stringify(weather);
+    console.log(data);
+  // }
+  
 
   async function fetchData() {
-    const res = await fetch(api);
-    res
-      .json()
-      .then(res => setWeather(res))
-      .catch(err => setErrors(err));
+    //   Preventing CORS errors
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const api = `${proxy}https://api.darksky.net/forecast/ee3193faf8920bcf3d01cfdbdb9d14ad/42.3601,-71.0589,255657600?exclude=currently,flags`;
+
+    const response = await fetch(api);
+    const data = await response.json();
+
+    if(data){
+      setWeather(data);
+      // console.log(data)
+      // const data = await JSON.stringify(weather);
+      return (
+        <div>
+          <CurrentWeather />
+          {console.log(data)}
+          <hr />
+          <span>Has error: {JSON.stringify(hasError)}</span>
+          
+        </div>
+      );
+    }else{
+      setErrors(console.log("Error! Can not fetch data")) 
+    }
   }
 
   useEffect(() => {
     fetchData();
+    // myData();
   });
 
-  return (
-    <div>
-      <CurrentWeather />
-      <span>{JSON.stringify(weather)}</span>
-      <hr />
-      <span>Has error: {JSON.stringify(hasError)}</span>
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <CurrentWeather />
+  //     <div>{myData}</div>
+  //     <hr />
+  //     <span>Has error: {JSON.stringify(hasError)}</span>
+  //   </div>
+  // );
 };
 export default Weather;

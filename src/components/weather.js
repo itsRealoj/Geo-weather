@@ -7,8 +7,8 @@ class WeatherComponent extends Component {
 
         this.state = {
             color: "#ffffff",
-            width: "100vw",
-            height: "100vh",
+            width: "50vw",
+            height: "50vh",
             padding: "20px",
             margin: "20px"
         }

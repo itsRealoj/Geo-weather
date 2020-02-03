@@ -21,6 +21,7 @@ class CurrentWeather extends Component{
           }
     }
 
+    // function to set the new state with new values of lat and long
     getCoordinates(position) {
         this.setState({
             latitude: position.coords.latitude,
@@ -28,6 +29,7 @@ class CurrentWeather extends Component{
         })
     }
 
+    // function to handle error
     handleLocationError(error) {
         switch(error.code) {
             case error.PERMISSION_DENIED:
@@ -53,6 +55,7 @@ class CurrentWeather extends Component{
             <div>
                 <button onClick={this.getLocation}>Get Location</button>
                 <div>Latitude:{this.state.latitude}</div>
+                <div>Longitude:{this.state.longitude}</div>
             </div>
         )
     }
