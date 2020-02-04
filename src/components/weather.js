@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Weather from './displayWeather';
-import CurrentWeather from './currentPosition'
 
 class WeatherComponent extends Component {
     constructor(props){
@@ -8,8 +7,8 @@ class WeatherComponent extends Component {
 
         this.state = {
             color: "#ffffff",
-            width: "50vw",
-            height: "50vh",
+            width: "100vw",
+            height: "100vh",
             padding: "20px",
             margin: "20px"
         }
@@ -17,10 +16,9 @@ class WeatherComponent extends Component {
 
     render(){
         return(
-            <div className="row" style={{backgroundColor:this.state.color}}>
-                <div className="col" style={{backgroundColor: this.state.color, width: this.state.width, height: this.state.height, padding: this.state.padding, margin: this.state.margin}}>
-                    <p>Current weather</p>
-                    <CurrentWeather />
+            <div>
+                <div>
+                    <p className="display-3 my-5 text-center">Current weather</p>
                     <Weather />
                 </div>
             </div>

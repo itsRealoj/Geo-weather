@@ -11,6 +11,7 @@ class CurrentWeather extends Component{
         };
         this.getLocation = this.getLocation.bind(this);
         this.getCoordinates = this.getCoordinates.bind(this);
+        console.log(this)
     }
 
     getLocation() {
@@ -21,7 +22,7 @@ class CurrentWeather extends Component{
           }
     }
 
-    // function to set the new state with new values of lat and long
+    // function to set the new state with new values of latitude and longitude
     getCoordinates(position) {
         this.setState({
             latitude: position.coords.latitude,
@@ -29,7 +30,7 @@ class CurrentWeather extends Component{
         })
     }
 
-    // function to handle error
+    // function to handle error when location fails to access
     handleLocationError(error) {
         switch(error.code) {
             case error.PERMISSION_DENIED:
