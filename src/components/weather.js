@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Weather from './displayWeather';
+import CurrentWeather from './currentPosition'
 
 class WeatherComponent extends Component {
     constructor(props){
@@ -19,6 +20,7 @@ class WeatherComponent extends Component {
             <div className="row" style={{backgroundColor:this.state.color}}>
                 <div className="col" style={{backgroundColor: this.state.color, width: this.state.width, height: this.state.height, padding: this.state.padding, margin: this.state.margin}}>
                     <p>Current weather</p>
+                    <CurrentWeather />
                     <Weather />
                 </div>
             </div>
